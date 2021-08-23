@@ -34,11 +34,13 @@ server.use(express.json(), cors(), helmet(), session(sessionConfig));
 const welcomeRouter = require("../welcome/welcome-router");
 const userRouter = require("../users/users-router");
 const authRouter = require("../auth/auth-router");
+const locationsRouter = require("../location/location-router");
 
 //SERVER Endpoints ------------>
 server.use("/", welcomeRouter);
 server.use("/api/users", restrictedUser(), userRouter);
 server.use("/api/auth", authRouter);
+server.use("/api/location", locationsRouter);
 
 //middleware for CATCH ERROR on all endpoints of /api/messages
 server.use((err, req, res, next) => {
