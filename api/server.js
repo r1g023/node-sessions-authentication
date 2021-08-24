@@ -9,7 +9,7 @@ const { restrictedUser } = require("../middleware/global-middleware");
 //SERVER SESSIONS
 const sessionConfig = {
   name: "sessionID",
-  secret: process.env.SECRET[0],
+  secret: "it's a secret",
   cookie: {
     maxAge: 3600 * 1000,
     secure: false,
