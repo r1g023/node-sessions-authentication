@@ -1,8 +1,10 @@
 const Users = require("../users/users-helper");
+const Location = require("../location/location-helper");
 
 module.exports = {
   getById,
   restrictedUser,
+  getLocationByID,
 };
 
 function getById() {
@@ -12,6 +14,18 @@ function getById() {
         user
           ? ((req.user = user), next())
           : res.json({ message: `cant find user of id # ${req.params.id}` });
+      })
+      .catch((err) => next(err));
+  };
+}
+
+function getLocationByID() {
+  return (req, res, next) => {
+    Location.getlocationID(req.params.id)
+      .then((location) => {
+        location
+          ? ((req.location = location), next())
+          : res.json({ message: `no location of id #${req.params.id} found` });
       })
       .catch((err) => next(err));
   };
